@@ -48,6 +48,7 @@ function Otp() {
 
   return (
     <div>
+      <h4>Enter OTP</h4>
       {otpValues.map((val, ind) => (
         <Input
           key={ind}
