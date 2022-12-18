@@ -27,6 +27,22 @@ function Otp() {
       let existingOtpValues = [...otpValues];
       existingOtpValues[ind]["value"] = e.target.value;
       setOtpValues(existingOtpValues);
+
+      if (existingOtpValues[ind]["value"].length > 0) {
+        if (ind < 5) {
+          let nextInd = ind + 1;
+          let nextInput = document.getElementById("#otp" + nextInd);
+          console.log(nextInput);
+          nextInput.focus();
+        }
+      } else {
+        if (ind >= 1) {
+          let prevInd = ind - 1;
+          let prevInput = document.getElementById("#otp" + prevInd);
+          console.log(prevInput);
+          prevInput.focus();
+        }
+      }
     }
   };
 
@@ -35,11 +51,13 @@ function Otp() {
       {otpValues.map((val, ind) => (
         <Input
           key={ind}
+          id={"#otp" + ind}
           type="text"
           value={otpValues[ind]["value"]}
           onChange={(e) => handleOnChange(e, ind)}
           minLength="0"
           maxLength="1"
+          autoFocus={ind === 0}
         />
       ))}
     </div>
